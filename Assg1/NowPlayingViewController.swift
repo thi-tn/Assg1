@@ -15,7 +15,6 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
     
-    
     var movies: [[String: Any]] = []
     var refreshControl: UIRefreshControl!
     
@@ -25,6 +24,10 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
+        // Use a red color when the user selects the cell
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.gray
+        cell.selectedBackgroundView = backgroundView
         
         let movie = movies[indexPath.row]
         let title = movie["title"] as! String
@@ -43,7 +46,8 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        // Start the activity indicator
+        activityIndicator.startAnimating()
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(NowPlayingViewController.didPulltoRefresh(_:)), for: .valueChanged)
         tableView.insertSubview(refreshControl, at: 0)
@@ -51,16 +55,18 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
         
         // Do any additional setup after loading the view.
         fetchMovies()
+        // Stop the activity indicator
+        // Hides automatically if "Hides When Stopped" is enabled
+        activityIndicator.stopAnimating()
         
     }
     
     @objc func didPulltoRefresh(_ refreshControl: UIRefreshControl) {
         fetchMovies()
-        // Start the activity indicator
-        activityIndicator.startAnimating()
     }
     
     func fetchMovies() {
+        
         let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed")!
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
@@ -78,9 +84,8 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
                 // TODO: Reload your table view data
                 self.tableView.reloadData()
                 self.refreshControl.endRefreshing()
-                // Stop the activity indicator
-                // Hides automatically if "Hides When Stopped" is enabled
-                self.activityIndicator.stopAnimating()            }
+                
+            }
         }
         
         task.resume()
