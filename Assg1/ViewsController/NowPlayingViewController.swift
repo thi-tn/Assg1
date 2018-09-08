@@ -24,9 +24,10 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
-        // Use a red color when the user selects the cell
+        // Use a gray color when the user selects the cell
         let backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor.gray
+        let selectedColor = UIColor(red: 210/255, green: 231/255, blue: 239/255, alpha: 1)
+        backgroundView.backgroundColor = selectedColor
         cell.selectedBackgroundView = backgroundView
         
         let movie = movies[indexPath.row]
@@ -41,6 +42,15 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
         cell.posterImageView.af_setImage(withURL: posterURL)
         
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let cell = sender as! UITableViewCell
+        if let indexPath = tableView.indexPath(for: cell) {
+            let movie = movies[indexPath.row]
+            let detailViewController = segue.destination as! DetailViewController
+            detailViewController.movie = movie
+        }
     }
     
 

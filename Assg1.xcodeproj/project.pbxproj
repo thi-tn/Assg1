@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3F06BAAD2142159000193824 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F06BAAC2142159000193824 /* MovieCell.swift */; };
+		3F199400214480560028ABF0 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1993FF214480560028ABF0 /* DetailViewController.swift */; };
 		3FF95E942141F55A00D8D857 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF95E932141F55A00D8D857 /* AppDelegate.swift */; };
 		3FF95E992141F55A00D8D857 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FF95E972141F55A00D8D857 /* Main.storyboard */; };
 		3FF95E9B2141F56500D8D857 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FF95E9A2141F56500D8D857 /* Assets.xcassets */; };
@@ -39,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		3F06BAAC2142159000193824 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
+		3F1993FF214480560028ABF0 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		3FF95E902141F55A00D8D857 /* Assg1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Assg1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FF95E932141F55A00D8D857 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3FF95E982141F55A00D8D857 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -91,6 +93,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F1993FD21447FE40028ABF0 /* ViewsController */ = {
+			isa = PBXGroup;
+			children = (
+				3FF95EC32141FCB100D8D857 /* NowPlayingViewController.swift */,
+				3F1993FF214480560028ABF0 /* DetailViewController.swift */,
+			);
+			path = ViewsController;
+			sourceTree = "<group>";
+		};
+		3F1993FE214480120028ABF0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3F06BAAC2142159000193824 /* MovieCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		3FF95E872141F55A00D8D857 = {
 			isa = PBXGroup;
 			children = (
@@ -116,13 +135,13 @@
 		3FF95E922141F55A00D8D857 /* Assg1 */ = {
 			isa = PBXGroup;
 			children = (
+				3F1993FE214480120028ABF0 /* Views */,
 				3FF95E932141F55A00D8D857 /* AppDelegate.swift */,
 				3FF95E972141F55A00D8D857 /* Main.storyboard */,
-				3F06BAAC2142159000193824 /* MovieCell.swift */,
 				3FF95E9A2141F56500D8D857 /* Assets.xcassets */,
+				3F1993FD21447FE40028ABF0 /* ViewsController */,
 				3FF95E9C2141F56500D8D857 /* LaunchScreen.storyboard */,
 				3FF95E9F2141F56500D8D857 /* Info.plist */,
-				3FF95EC32141FCB100D8D857 /* NowPlayingViewController.swift */,
 			);
 			path = Assg1;
 			sourceTree = "<group>";
@@ -383,6 +402,7 @@
 				3FF95EC42141FCB100D8D857 /* NowPlayingViewController.swift in Sources */,
 				3FF95E942141F55A00D8D857 /* AppDelegate.swift in Sources */,
 				3F06BAAD2142159000193824 /* MovieCell.swift in Sources */,
+				3F199400214480560028ABF0 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
