@@ -22,7 +22,7 @@ class Movie {
         
         let baseUrlString = "https://image.tmdb.org/t/p/w500"
         let posterPath = dictionary["poster_path"] as? String ?? "No poster"
-        let backdropString = dictionary["backdropPath"] as? String ?? "No backdrop"
+        let backdropString = dictionary["backdrop_path"] as? String ?? "No backdrop"
         posterUrl = URL(string: baseUrlString + posterPath)
         backdropUrl = URL(string: baseUrlString + backdropString)
         
