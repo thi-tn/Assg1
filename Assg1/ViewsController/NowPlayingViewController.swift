@@ -24,23 +24,12 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
-        // Use a gray color when the user selects the cell
+        cell.movie = movies[indexPath.row]
         let backgroundView = UIView()
         let selectedColor = UIColor(red: 210/255, green: 231/255, blue: 239/255, alpha: 1)
         backgroundView.backgroundColor = selectedColor
         cell.selectedBackgroundView = backgroundView
         
-        let movie = movies[indexPath.row]
-        let title = movie.title
-        let overview = movie.overview
-        cell.titleLabel.text = title
-        cell.overviewLabel.text = overview
-
-        if movie.posterUrl != nil {
-            cell.posterImageView.af_setImage(withURL: movie.posterUrl!)
-        }
- 
-        cell.posterImageView.af_setImage(withURL: posterURL)
         
         return cell
     }
@@ -67,10 +56,15 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 50
         
-        // Do any additional setup after loading the view.
-        fetchMovies()
+        //fetchMovies()
+        
+        MovieApiManager().nowPlayingMovies { (movies: [Movie]?, error: Error?) in
+            if let movies = movies {
+                self.movies = movies
+                self.tableView.reloadData()
+            }
+        }
         // Stop the activity indicator
-        // Hides automatically if "Hides When Stopped" is enabled
         activityIndicator.stopAnimating()
         
     }
@@ -89,13 +83,6 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
             if let error = error {
                 print(error.localizedDescription)
             } else if let data = data {
-//                let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-//
-//                // TODO: Get the array of movies
-//                let movies = dataDictionary["results"] as! [[String: Any]]
-//                // TODO: Store the movies in a property to use elsewhere
-//                self.movies = movies
-                
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                 let movieDictionaries = dataDictionary["results"] as! [[String: Any]]
                 
@@ -113,6 +100,19 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
         
         task.resume()
         
+    }
+    
+    func fetchPopularMovies() {
+        let url = URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=<<api_key>>&language=en-US&page=1")!
+        let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
+        let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
+        let task = session.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else if let data = data {
+            }
+        }
+        task.resume()
     }
     
     

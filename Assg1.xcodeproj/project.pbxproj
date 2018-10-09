@@ -11,6 +11,7 @@
 		3F199400214480560028ABF0 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1993FF214480560028ABF0 /* DetailViewController.swift */; };
 		3F1994022144901F0028ABF0 /* PosterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1994012144901F0028ABF0 /* PosterCell.swift */; };
 		3F1994042144907C0028ABF0 /* SuperheroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1994032144907C0028ABF0 /* SuperheroViewController.swift */; };
+		3F26F6FF216D31B600BEEF50 /* MovieApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F26F6FE216D31B600BEEF50 /* MovieApiManager.swift */; };
 		3FF95E942141F55A00D8D857 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF95E932141F55A00D8D857 /* AppDelegate.swift */; };
 		3FF95E992141F55A00D8D857 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FF95E972141F55A00D8D857 /* Main.storyboard */; };
 		3FF95E9B2141F56500D8D857 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FF95E9A2141F56500D8D857 /* Assets.xcassets */; };
@@ -46,6 +47,7 @@
 		3F1993FF214480560028ABF0 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		3F1994012144901F0028ABF0 /* PosterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterCell.swift; sourceTree = "<group>"; };
 		3F1994032144907C0028ABF0 /* SuperheroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperheroViewController.swift; sourceTree = "<group>"; };
+		3F26F6FE216D31B600BEEF50 /* MovieApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieApiManager.swift; sourceTree = "<group>"; };
 		3FF95E902141F55A00D8D857 /* Assg1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Assg1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FF95E932141F55A00D8D857 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3FF95E982141F55A00D8D857 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				3FF95E9C2141F56500D8D857 /* LaunchScreen.storyboard */,
 				3FF95E9F2141F56500D8D857 /* Info.plist */,
 				85B936F5216C574E00E84D44 /* Movie.swift */,
+				3F26F6FE216D31B600BEEF50 /* MovieApiManager.swift */,
 			);
 			path = Assg1;
 			sourceTree = "<group>";
@@ -413,6 +416,7 @@
 				3F1994022144901F0028ABF0 /* PosterCell.swift in Sources */,
 				3F1994042144907C0028ABF0 /* SuperheroViewController.swift in Sources */,
 				3FF95E942141F55A00D8D857 /* AppDelegate.swift in Sources */,
+				3F26F6FF216D31B600BEEF50 /* MovieApiManager.swift in Sources */,
 				3F06BAAD2142159000193824 /* MovieCell.swift in Sources */,
 				3F199400214480560028ABF0 /* DetailViewController.swift in Sources */,
 			);
