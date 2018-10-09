@@ -15,7 +15,7 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
     
-    var movies: [[String: Any]] = []
+    var movies: [Movie] = []
     var refreshControl: UIRefreshControl!
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -31,14 +31,15 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
         cell.selectedBackgroundView = backgroundView
         
         let movie = movies[indexPath.row]
-        let title = movie["title"] as! String
-        let overview = movie["overview"] as! String
+        let title = movie.title
+        let overview = movie.overview
         cell.titleLabel.text = title
         cell.overviewLabel.text = overview
-      
-        let posterPathString = movie["poster_path"] as! String
-        let baseURLString = "https://image.tmdb.org/t/p/w500"
-        let posterURL = URL(string: baseURLString + posterPathString)!
+
+        if movie.posterUrl != nil {
+            cell.posterImageView.af_setImage(withURL: movie.posterUrl!)
+        }
+ 
         cell.posterImageView.af_setImage(withURL: posterURL)
         
         return cell
@@ -88,12 +89,21 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
             if let error = error {
                 print(error.localizedDescription)
             } else if let data = data {
-                let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+//                let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+//
+//                // TODO: Get the array of movies
+//                let movies = dataDictionary["results"] as! [[String: Any]]
+//                // TODO: Store the movies in a property to use elsewhere
+//                self.movies = movies
                 
-                // TODO: Get the array of movies
-                let movies = dataDictionary["results"] as! [[String: Any]]
-                // TODO: Store the movies in a property to use elsewhere
-                self.movies = movies
+                let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+                let movieDictionaries = dataDictionary["results"] as! [[String: Any]]
+                
+                self.movies = []
+                for dictionary in movieDictionaries {
+                    let movie = Movie(dictionary: dictionary)
+                    self.movies.append(movie)
+                }
                 // TODO: Reload your table view data
                 self.tableView.reloadData()
                 self.refreshControl.endRefreshing()
